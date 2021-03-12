@@ -1,0 +1,71 @@
+<!-- https://aframe.io/docs/1.1.0/components/oculus-touch-controls.html#events_triggerdown -->
+<!-- events : triggerdown / triggerup / triggertouchstart / triggertouchend / triggerchange -->
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+        <script>
+        AFRAME.registerComponent('gauche', {
+        	init: function()
+        	{
+                const utilisateur = document.querySelector('#utilisateur');
+                const boite2 = document.querySelector('#boite2');
+
+        		this.el.addEventListener("triggerdown", function(event)	{
+                    AFRAME.utils.entity.setComponentProperty(boite2, 'color', 'red');
+        		});
+
+                this.el.addEventListener("triggertouchstart", function(event)	{
+                    utilisateur.object3D.position.z += 0.1;
+        		});
+        	}
+        });
+        AFRAME.registerComponent('droite', {
+        	init: function()
+        	{
+                const utilisateur = document.querySelector('#utilisateur');
+                const boite2 = document.querySelector('#boite2');
+
+                this.el.addEventListener("triggerdown", function(event)	{
+                    AFRAME.utils.entity.setComponentProperty(boite2, 'color', 'green');
+        		});
+
+                this.el.addEventListener("triggertouchstart", function(event)	{
+                    utilisateur.object3D.position.z -= 0.1;
+        		});
+        	}
+        });
+
+        </script>
+    </head>
+
+    <body>
+        <a-scene renderer="antialias: true">
+
+        	<a-entity id="utilisateur" position="0 0 0">
+        		<a-entity camera position="0 1.5 1" look-controls></a-entity>
+                <a-entity oculus-touch-controls="hand: left" gauche></a-entity>
+                <a-entity oculus-touch-controls="hand: right" droite></a-entity>
+                </a-entity>
+        	</a-entity>
+
+        	<a-plane width="10" height="10" color="#999999"
+        		position="0 0 0" rotation="-90 0 0">
+        	</a-plane>
+
+        	<a-box id="boite1" position="-2 0.5 -3" color="blue">
+            </a-box>
+
+        	<a-box id="boite2" position = "0 0.5 -3" color = "blue">
+        	</a-box>
+
+        	<a-box id="boite3" position = "2 0.5 -3" color = "blue">
+        	</a-box>
+
+        </a-scene>
+    </body>
+</html>

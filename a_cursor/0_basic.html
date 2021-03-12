@@ -1,0 +1,33 @@
+<!-- https://aframe.io/docs/1.0.0/components/cursor.html -->
+<!-- https://aframe.io/docs/1.0.0/components/look-controls.html -->
+<!-- ref de l'exemple : https://codepen.io/Absulit/pen/WEKjqm -->
+<html>
+
+    <head>
+          <meta charset="UTF-8">
+          <title>0_cursor_basic</title>
+          <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+    </head>
+
+<body>
+    <a-scene>
+
+        <a-camera position="0 1.6 4" look-controls wasd-controls>
+              <a-cursor position="0 0 -3"
+                        geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02;"
+                        material="color: cyan; shader: flat"
+                        fuse= "true"
+                        <a-animation begin="fusing" easing="ease-in" attribute="scale"
+                        fill="backwards" from="1 1 1" to="0.2 0.2 0.2" dur="1500"></a-animation>
+              </a-cursor>
+        </a-camera>
+
+        <a-box position="0 1 0" material="color: green">
+               <a-animation begin="mouseenter" attribute="rotation" to="0 360 0"
+               easing="linear" dur="2000" fill="backwards"></a-animation>
+        </a-box>
+
+    </a-scene>
+</body>
+
+</html>

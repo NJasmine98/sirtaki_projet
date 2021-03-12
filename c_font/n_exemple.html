@@ -1,0 +1,83 @@
+<!-- https://aframe.io/docs/1.1.0/components/text.html#stock-fonts -->
+<!-- https://github.com/etiennepinchon/aframe-fonts -->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>aframe-fonts🅰️📖👌</title>
+    <meta name="description" content="Aframe-Equalizer">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+</head>
+
+<body>
+    <a-scene background="color: #5280A7">
+
+        <!-- BEGIN: DEMO -->
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/berkshireswash/BerkshireSwash-Regular.json;"
+            scale="15 15 15" position="6.7 1 -2">
+        </a-entity>
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;"
+            scale="15 15 15" position="6.7 1 -2"></a-entity>
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/crimsontext/CrimsonText-Regular.json;"
+            scale="15 15 15" position="6.7 1 -2"></a-entity>
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/giveyouglory/GiveYouGlory.json;"
+            scale="15 15 15" position="6.7 1 -2"></a-entity>
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/miltoniantattoo/MiltonianTattoo-Regular.json;"
+            scale="15 15 15" position="6.7 1 -2"></a-entity>
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/snippet/Snippet.json;"
+            scale="15 15 15" position="6.7 1 -2"></a-entity>
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/specialelite/SpecialElite-Regular.json;"
+            scale="15 15 15" position="6.7 1 -2"></a-entity>
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/syncopate/Syncopate-Regular.json;"
+            scale="15 15 15" position="6.7 1 -2"></a-entity>
+        <a-entity
+            text="value:Hello; color:#FFFFFF; shader: msdf; 
+                  font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/yesteryear/Yesteryear-Regular.json;"
+            scale="15 15 15" position="6.7 1 -2"></a-entity>
+        <!-- END: DEMO -->
+
+    </a-scene>
+
+    <script type="text/javascript">
+        let els = document.querySelectorAll('[text]');
+        let current = 0,
+            total = els.length;
+
+        let hideAll = () => {
+            for (let el of els) {
+                el.setAttribute('visible', false);
+            }
+        }
+
+        let show = () => {
+            hideAll();
+            if (current > total - 1) {
+                current = 0;
+            }
+            els[current].setAttribute('visible', true);
+            current++;
+        }
+
+        show();
+        setInterval(show, 300);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!-- https://aframe-course.glitch.me/0800-lights.html -->
+<!-- Shadows
+Warning : shadows are computationally expensive.
+Note : only point / spot / directional lights can cast shadows on objects
+
+In order to add shadows
+- need to tell which objects will receive shadows,
+- which objects will cast shadows on other objects,
+- which lights will cause shadows.
+
+example :
+- ground plane receive shadows = shadow="receive: true" (but cast hasno sense)
+- cylinder : shadow="cast: true; receive:true"
+- wich light will cause shadows : light="castShadow: true"
+
+Because shadows take a lot of processing :  A-Frame forces to define the volume on which shadows will be cast.
+= concept of shadow camera: imagine the light source has a video camera
+on which we can adjust the lens aperture, how far and how close it sees.
+Shadows will only be created by this light in the volume visible with this camera.
+
+The exact camera parameters depend on the type of light :
+example : for the directional light, ajust :
+- shadowCameraBottom plane
+- shadowCameraLeft plane
+- shadowCameraRight plane
+- shadowCameraTop plane
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lights - 01</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color: #5280A7">
+        <a-assets>
+            <img id="earth" crossorigin="anonymous" src="./earth.jpg" />
+            <img id="moon" crossorigin="anonymous" src="./moon.jpg" />
+        </a-assets>
+
+        <a-sphere position="0 1.6 -5" radius="1.25" src="#earth"
+                  shadow="cast: true">
+        </a-sphere>
+
+        <a-sphere id="moonsphere" position="2 1.6 -5" radius="0.25" src="#moon"
+                  shadow="cast: true">
+        </a-sphere>
+
+        <a-box position="-4 2 -4" color="blue" shadow="cast: true;"></a-box>
+
+        <a-cylinder position="-4 0.8 -5" height="1.6" radius="0.5"
+          shadow="cast: true;receive:true">
+        </a-cylinder>
+
+        <a-tetrahedron position="-6 1.6 -5" color="#85144b"></a-tetrahedron>
+
+        <!-- ground -->
+        <a-plane id="ground"
+          position="0 0 -4" rotation="-90 0 0"
+          width="40" height="40" color="#d0d0d0"
+          shadow="receive: true">
+        </a-plane>
+
+        <!-- ceiling -->
+        <a-plane position="0 5 0" rotation="90 0 0"
+          width="40" height="40" color="white">
+        </a-plane>
+
+        <!-- lights -->
+        <a-light id="ambientLight" type="ambient" color="#BBB"></a-light>
+
+        <a-light id="directionalLight" type="directional"
+          color="#FFF" position="0.05776 1.60862 1"
+          light="castShadow:  true;
+                 shadowCameraTop:  6.39;
+                 shadowCameraRight:  2.56;
+                 shadowCameraBottom:  3.54;
+                 shadowCameraLeft:  -4.55;">
+        </a-light>
+    </a-scene>
+</body>
+
+</html>

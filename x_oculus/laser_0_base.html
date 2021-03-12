@@ -1,0 +1,74 @@
+<!-- source : https://stemkoski.github.io/A-Frame-Examples/ -->
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+        <script>
+        AFRAME.registerComponent('mousey', {
+        	init: function()
+        	{
+        		let mesh = this.el.getObject3D("mesh");
+        		this.el.addEventListener("mouseenter", function(event)
+        		{
+        			mesh.material.color.set("red");
+        		});
+
+        		this.el.addEventListener("mousedown", function(event)
+        		{
+        			mesh.material.color.set("yellow");
+        		});
+
+        		this.el.addEventListener("mouseleave", function(event)
+        		{
+        			mesh.material.color.set("blue");
+        		});
+        	}
+
+        });
+        </script>
+    </head>
+
+    <body>
+        <a-scene renderer="antialias: true">
+
+        	<a-entity position="0 0 0">
+        		<a-entity camera position="0 1.5 1" look-controls></a-entity>
+                <a-entity id="leftHand"
+                    laser-controls="hand: left"
+                    raycaster="objects: .collidable; far: 5;"
+                    line="color: #CCCCCC"
+                    pointer>
+                </a-entity>
+        		<a-entity id="rightHand"
+                    laser-controls="hand: right"
+                    raycaster="objects: .collidable; far: 5;"
+                    line="color: #CCCCCC"
+                    pointer>
+                </a-entity>
+        	</a-entity>
+
+        	<a-plane width="10" height="10" color="#999999"
+        		position=" 0 0 0" rotation="-90 0 0">
+        	</a-plane>
+
+        	<a-box position="-2 0.5 -3" color="blue"
+        		class = "collidable"
+        		mousey>
+        	</a-box>
+
+        	<a-box position = "0 0.5 -3" color = "blue"
+        		class = "collidable"
+        		mousey>
+        	</a-box>
+
+        	<a-box position = "2 0.5 -3" color = "blue"
+        		class = "collidable"
+        		mousey>
+        	</a-box>
+
+        </a-scene>
+    </body>
+</html>

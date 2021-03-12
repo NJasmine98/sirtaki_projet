@@ -1,0 +1,45 @@
+<!-- EXEMPLE CIBLES ENTITES DANS LE SCENE -->
+<!-- https://github.com/jorgecardoso/aframe-proxemic-component -->
+<!-- https://aframe-course.glitch.me/viewsource/examples/1600-proximity-01.html -->
+<!-- Proxemics : allows objects to be informed when another object is in proximity. 
+By default, it tracks the proximity of the camera, i.e., the user, to an object. 
+
+Property      Description                                   Default Value
+- distance    Distance, in meters, to the target object     1
+- target      Selector to identify the target object        camera [camera]
+- hidden      Whether to trigger events on hidden entities  false
+
+Events :
+- proximityenter: when the user has entered the proximity radius.
+- proximityexit: when the user has left the proximity radius. 
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxemic-component@0.0.17/dist/aframe-proxemic-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color:lightblue">
+
+        <a-sphere proximity-sensor="target:#two; distance: 1" radius="0.25" id="one" side="both" color="green"
+            position="-2 1.6 -4"
+            animation="property:position; from: -2 1.6 -4; to: 2 1.6 -4; dur: 5000; dir: alternate; loop: true"
+            event-set__proximityenter="material.color: red" 
+            event-set__proximityexit="material.color: green">
+        </a-sphere>
+
+        <a-box proximity-sensor="target:#one; distance: 2" width="0.5" height="0.5" depth="0.5" id="two" side="both"
+            color="green" position="2 1.6 -4"
+            animation="property:position; from: 2 1.6 -4; to: -2 1.6 -4; dur: 5000; dir: alternate; loop: true"
+            event-set__proximityenter="material.color:blue" 
+            event-set__proximityexit="material.color: green">
+        </a-box>
+    </a-scene>
+
+</body>
+
+</html>

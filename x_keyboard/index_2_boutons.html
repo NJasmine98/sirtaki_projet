@@ -1,0 +1,159 @@
+<!-- déplacements : a= -X / d = +X / s = +Z / -Z
+                    q = rotation horaire / e = rotation anti-horaire -->
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="./js/extended-wasd-controls.js"></script>
+        <link rel="stylesheet" href="./assets/arrow.css">
+
+        <style>
+
+        body { -webkit-touch-callout: none;  }   /* disable long press in iOS? */
+        .mainUI {
+        	border: 0px solid pink;
+            position: fixed; top: 0px; width:99%; height:99%; z-index: 1;
+        	pointer-events: none; /* allow click-through in transparent areas */
+        }
+        .regionUI {
+        	border: 0px solid yellow;
+        	position: absolute; display: flex; flex-direction: row;
+            pointer-events: none;
+        }
+        .buttonUI {
+        	border: 0px solid lime;
+        	display: flex; flex-direction: column; justify-content: center;
+        	pointer-events: auto;
+        }
+        </style>
+        <script>
+
+        	function haltEvent(event)
+        	{
+        		event.preventDefault && event.preventDefault();
+        		event.stopPropagation && event.stopPropagation();
+        		event.cancelBubble = true;
+        		event.returnValue = false;
+        		return false;
+        	}
+
+        	// prevent right-click menus from appearing
+        	document.addEventListener("contextmenu", haltEvent );
+        	// more attempts to prevent right-click menus from appearing -- avoid; they block touchscreen/iPad controls
+        	// document.addEventListener("touchmove", haltEvent );
+        	// document.addEventListener("touchcancel", haltEvent );
+
+        	// add events for both touch and mouse controls
+        	function addButtonEventListeners( buttonElementID, startFunction, endFunction )
+        	{
+        		let element = document.getElementById( buttonElementID );
+        		element.addEventListener('touchstart', startFunction);
+        		element.addEventListener('mousedown',  startFunction);
+        		element.addEventListener('touchend',   endFunction);
+        		element.addEventListener('mouseup',    endFunction);
+        	}
+
+        	function associateMovementControls( buttonElementID, component, keyName )
+        	{
+        		addButtonEventListeners(buttonElementID,
+        			function(event)
+        			{
+        				component.registerKeyDown( keyName );
+        				return haltEvent(event);
+        			},
+        			function(event)
+        			{
+        				component.registerKeyUp( keyName );
+        				return haltEvent(event);
+        			}
+        		);
+        	}
+
+        	// need to run javascript code after a-scene entities and components are loaded
+        	AFRAME.registerComponent('screen-controls',
+        	{
+        		init: function ()
+        		{
+            		let component = document.getElementById("camera").components["extended-wasd-controls"];
+
+        			associateMovementControls( "buttonMoveForward",  component, component.data.moveForwardKey );
+        			associateMovementControls( "buttonMoveBackward", component, component.data.moveBackwardKey );
+        			associateMovementControls( "buttonMoveLeft",     component, component.data.moveLeftKey );
+        			associateMovementControls( "buttonMoveRight",    component, component.data.moveRightKey );
+        			associateMovementControls( "buttonMoveUp",       component, component.data.moveUpKey );
+        			associateMovementControls( "buttonMoveDown",     component, component.data.moveDownKey );
+          		},
+
+          		tick: function(time, deltaTime)
+          		{
+
+          		}
+        	});
+
+        </script>        
+
+    </head>
+
+    <body>
+
+    <div class="mainUI" id="uiDiv" oncontextmenu="return false;">
+
+    	<!-- top-left -->
+    	<div class="regionUI" style="top: 10px; left: 10px;" oncontextmenu="return false;">
+    		<div class="buttonUI">
+                <div class="arrowed" id="buttonMoveUp"><div class="arrow up"></div></div>
+                <div class="arrowed" id="buttonMoveDown"><div class="arrow down"></div></div>
+    	    </div>
+    	</div>
+
+    	<!-- top-right -->
+    	<div class="regionUI" style="top: 10px; right: 10px;">
+    	</div>
+
+    	<!-- bottom-left -->
+    	<div class="regionUI" style="bottom: 10px; left: 10px;">
+    	</div>
+
+    	<!-- bottom-right -->
+    	<div class="regionUI" style="bottom: 10px; right: 10px;">
+    		<div class="buttonUI">
+                <div class="arrowed" id="buttonMoveLeft"><div class="arrow left"></div></div>
+    	    </div>
+        	<div class="buttonUI">
+                <div class="arrowed" id="buttonMoveForward"><div class="arrow up"></div></div><br/>
+                <div class="arrowed" id="buttonMoveBackward"><div class="arrow down"></div></div>
+    	    </div>
+    	    <div class="buttonUI">
+                <div class="arrowed" id="buttonMoveRight"><div class="arrow right"></div></div>
+    	    </div>
+    	</div>
+
+    </div>
+
+
+        <!-- disable press "F" to enter fullscreen mode. -->
+        <a-scene keyboard-shortcuts="enterVR: false;" screen-controls renderer="antialias: true">
+
+            <a-entity id="camera" camera look-controls
+        		position="0 1.7 0"
+        		extended-wasd-controls="flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60;">
+        	</a-entity>
+
+        	<a-plane width="10" height="10" color="#999999"
+        		position="0 0 0" rotation="-90 0 0">
+        	</a-plane>
+
+        	<a-box id="boite1" position="-2 0.5 -3" color="blue">
+            </a-box>
+
+        	<a-box id="boite2" position = "0 0.5 -3" color = "blue">
+        	</a-box>
+
+        	<a-box id="boite3" position = "2 0.5 -3" color = "blue">
+        	</a-box>
+
+        </a-scene>
+    </body>
+</html>

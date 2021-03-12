@@ -1,0 +1,18 @@
+REFERENCE
+https://github.com/aframevr/aframe/blob/master/docs/components/gltf-model.md
+https://docs.blender.org/manual/en/2.80/addons/io_scene_gltf2.html
+
+EXPORT/IMPORT LIB
+https://github.com/KhronosGroup/glTF-Blender-IO
+
+OUTILS
+Validator : 	http://github.khronos.org/glTF-Validator/
+Viewer : 		https://gltf-viewer.donmccurdy.com/
+
+TUTOS
+https://docs.minsar.app/howtos/gltf-blender-280/
+https://medium.com/@matthewmain/how-to-import-a-3d-blender-object-into-a-three-js-project-as-a-gltf-file-5a67290f65f2
+
+BLENDER ACTION
+cubeecraft.com/
+https://www.youtube.com/watch?v=8HyFikLRdV4

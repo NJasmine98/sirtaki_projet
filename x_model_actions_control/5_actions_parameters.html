@@ -1,0 +1,83 @@
+<!-- https://github.com/jgbarah/aframe-playground/tree/master/moving-01 -->
+<!-- Fox : https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/Fox -->
+<!-- animations : dans le gltf "name":  Walk / Survey / Run-->
+<!-- https://github.com/n5ro/aframe-extras/tree/master/src/loaders#animation
+     Event 	               Details 	            Description
+     - animation-loop 	   action, loopDelta 	Emitted when a single loop has finished.
+     - animation-finished  action, direction 	Emitted when all loops  have finished
+ -->
+ <!-- https://aframe.io/docs/1.0.0/core/component.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+
+    <script>
+      var repet = 1;
+      var duree = 2;
+      var dataRun = "clip: Run; crossFadeDuration: .3; repetitions : "+repet+"; duration: "+duree;
+      var debut = Date.now();
+      var fin;
+
+      AFRAME.registerComponent('loaded', {
+        init: function () {
+            var el = this.el;
+            el.addEventListener('model-loaded', () => {
+                console.log(">>> animation chargée : "+el.id);
+
+                });
+            el.addEventListener('model-error', () => {
+                console.log(">>> erreur chargement : "+el.id);
+            });
+        }
+      });
+
+      AFRAME.registerComponent('finished', {
+          update: function () {
+              var el = this.el;
+              el.addEventListener('animation-finished', () => {
+                  // ancienne anim
+                  console.log(">>> animation terminée : "+el.id);
+                  el.removeAttribute("animation-mixer");
+                  fin =  Date.now();
+                  let ecoule =((fin - debut)/1000).toFixed(1);
+                  console.log(">>> répétions: "+repet+" duration: "+duree+" ecoulé : "+ecoule+"s");
+
+                  // nouvelle anim
+                  repet = Math.ceil(Math.random() * 5);             // entier supérieur
+                  // duree = (Math.random() * 5).toFixed(1);           // arrondi 1 décimale</1>
+                  duree = (duree*0.9).toFixed(1);
+                  var dataRun = "clip: Run; crossFadeDuration: .3; repetitions : "+repet+"; duration: "+duree;
+                  el.setAttribute("animation-mixer", dataRun);
+                  debut =  Date.now();
+              });
+          }
+      });
+    </script>
+  </head>
+
+  <body>
+      <a-scene>
+        <a-assets>
+          <a-asset-item id="fox" src="./models/fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity id="renard"
+                  position="-4 -2 -9"
+                  rotation="0 60 0"
+                  scale="0.03 0.03 0.03"
+                  gltf-model="#fox"
+                  animation-mixer="clip: Run; repetitions : 1; duration: 5; "
+                  loaded
+                  finished>
+        </a-entity>
+
+        <a-sky color="grey"></a-sky>
+        <a-light type="ambient" color="white"></a-light>
+        <a-light type="point" intensity="1" position="-2 2 2"></a-light>
+      </a-scene>
+
+  </body>
+</html>

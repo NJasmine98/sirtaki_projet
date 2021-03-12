@@ -1,0 +1,40 @@
+<!-- EXEMPLE CAPTEUR ROTATION CAMERA -->
+<!-- https://github.com/jorgecardoso/aframe-proxemic-component -->
+<!-- https://aframe-course.glitch.me/viewsource/examples/1600-proximity-01.html -->
+<!-- Proxemics : allows objects to be informed when another object is in proximity. 
+By default, it tracks the proximity of the camera, i.e., the user, to an object. 
+
+Property      Description                                   Default Value
+- distance    Distance, in meters, to the target object     1
+- target      Selector to identify the target object        camera [camera]
+- hidden      Whether to trigger events on hidden entities  false
+
+Events :
+- proximityenter: when the user has entered the proximity radius.
+- proximityexit: when the user has left the proximity radius. 
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxemic-component@0.0.17/dist/aframe-proxemic-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color:lightblue">
+
+        <a-box id="one" color="red" position="0 1.6 -4"></a-box>
+
+        <a-camera 
+            compass-sensor="xRotMin:-15; xRotMax: 15;" 
+            event-set__enter="_event: compass-sensor-enter; _target:#one; color:blue;"
+            event-set__leave="_event: compass-sensor-leave; _target:#one; color:red;"
+            <a-cursor></a-cursor>
+        </a-camera>
+    </a-scene>
+
+</body>
+
+</html>

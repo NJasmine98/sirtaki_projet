@@ -1,0 +1,46 @@
+<!-- https://aframe-course.glitch.me/0800-lights.html -->
+<!-- Directional light
+- light source that is very far away
+= comes from a direction but does not have a specific location in space.
+
+The way to specify the direction is by specifying a position :
+= formed by the line that connects the position to the origin (0, 0,0)
+
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lights - 01</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color: #5280A7">
+        <a-assets>
+            <img id="earth" crossorigin="anonymous" src="./earth.jpg" />
+            <img id="moon" crossorigin="anonymous" src="./moon.jpg" />
+        </a-assets>
+
+        <a-sphere position="0 1.6 -5" radius="1.25" src="#earth"></a-sphere>
+        <a-sphere position="2 1.6 -5" radius="0.25" src="#moon"></a-sphere>
+        <a-box position="-2 1.6 -5" color="blue"></a-box>
+        <a-cylinder position="-4 0.8 -5" height="1.6" radius="0.5"></a-cylinder>
+        <a-tetrahedron position="-6 1.6 -5" color="#85144b"></a-tetrahedron>
+
+        <!-- ground -->
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" color="#d0d0d0"></a-plane>
+
+        <!-- ceiling -->
+        <a-plane position="0 5 0" rotation="90 0 0" width="40" height="40" color="white"></a-plane>
+
+        <!-- lights :  a directional light positioned just behind the user, a bit to the left -->
+        <a-light id="directionalLight" type="directional"
+                 color="#FFF" position="-0.5 1 1"
+                 intensity="0.6">
+        </a-light>
+    </a-scene>
+</body>
+
+</html>

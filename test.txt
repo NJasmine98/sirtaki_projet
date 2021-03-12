@@ -1,0 +1,17 @@
+PERFORMANCES
+
+https://aframe.io/docs/1.0.0/introduction/models.html
+model performance : stats, decimate
+
+https://aframe.io/docs/1.0.0/introduction/best-practices.html
+performances
+
+https://aframe.io/docs/1.0.0/components/gltf-model.html
+= draco compression
+
+OCULUS
+https://aframe.io/docs/1.0.0/introduction/vr-headsets-and-webvr-browsers.html
+
+https://developer.cdn.mozilla.net/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_A-Frame
+https://mixedreality.mozilla.org/
+https://stemkoski.github.io/A-Frame-Examples/

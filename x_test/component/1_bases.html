@@ -1,0 +1,74 @@
+<!-- https://aframe.io/docs/1.0.0/core/component.html
+    // Registering component in foo-component.js
+    AFRAME.registerComponent('foo', {
+      schema: {},
+      init: function () {},
+      update: function () {},
+      tick: function () {},
+      remove: function () {},
+      pause: function () {},
+      play: function () {}
+  });  -->
+<!-- https://aframe.io/docs/1.0.0/introduction/writing-a-component.html -->
+<html>
+  <head>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+        <script>
+              AFRAME.registerComponent('hello-world', {
+                init: function () {
+                    console.log('>>> Hello, World!');
+                }
+            });
+
+            AFRAME.registerComponent('log', {
+                schema: {
+                  message: {type: 'string', default: '>>> Logging ...'}
+                },
+
+                init: function () {
+                  console.log(this.data.message);
+                }
+            });
+
+            AFRAME.registerComponent('boite', {
+              schema: {
+                width: {type: 'number', default: 1},
+                height: {type: 'number', default: 1},
+                depth: {type: 'number', default: 1},
+                color: {type: 'color', default: '#AAA'}
+              },
+
+              init: function () {
+                var data = this.data;
+                var el = this.el;
+                this.geometry = new THREE.BoxBufferGeometry(data.width, data.height, data.depth);
+                this.material = new THREE.MeshStandardMaterial({color: data.color});
+                this.mesh = new THREE.Mesh(this.geometry, this.material);
+                el.setObject3D('mesh', this.mesh);
+              },
+            });
+
+        </script>
+  </head>
+
+  <body>
+    <a-scene>
+        <a-box
+            position="0 0 -5"
+            rotation="0 0 30"
+            hello-world
+            log="message: >>> test log !"
+            >
+        </a-box>
+        <a-entity
+            boite="color: #128"
+            position="2 0 -5"
+            log="message: >>> test boite !"
+            >
+        </a-entity>
+
+        <a-sky color="#6EBAA7"></a-sky>
+    </a-scene>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!-- ERREUR _ IMPOSSIBLE DE METTRE PLUSIEURS CAPTEURS PROXIMITY SUR LE MEME ENTITY -->
+<!-- Error: Trying to initialize multiple components of type `proximity-sensor`. 
+There can only be one component of this type per entity. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxemic-component@0.0.17/dist/aframe-proxemic-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color:lightblue">
+
+        <a-box proximity-sensor__1="distance:4" proximity-sensor__2="distance:3"
+            width="0.5" height="0.5" depth="0.5" side="both" color="red"
+            position="0 1.6 -4" rotation="45 45 45"
+            animation="property:position; from: 0 1.6 -5; to: 0 1.6 -0.5; dur: 5000; dir: alternate; loop: true"
+            event-set__1__enter="_event: proximity-sensor-enter-1; color:blue;"
+            event-set__1__exit="_event: proximity-sensor-exit-1; color:red;"
+            event-set__2__enter="_event: proximity-sensor-enter-2; color:green;"
+        >
+        </a-box>
+    </a-scene>
+
+</body>
+
+</html>

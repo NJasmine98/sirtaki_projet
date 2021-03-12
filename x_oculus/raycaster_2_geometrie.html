@@ -1,0 +1,52 @@
+<!-- source : https://github.com/aframevr/aframe/blob/master/docs/components/raycaster.md -->
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script>
+        AFRAME.registerComponent('collision', {
+        	init: function() {
+                let mesh = this.el.getObject3D("mesh");
+        		this.el.addEventListener("raycaster-intersected", function(event) {
+                    mesh.material.color.set("red");
+        		});
+
+        		this.el.addEventListener("raycaster-intersected-cleared", function(event) {
+                    mesh.material.color.set("blue");
+        		});
+        	}
+        });
+        </script>
+
+    </head>
+
+    <body>
+        <a-scene renderer="antialias: true">
+            <a-entity position="0 0 0">
+        		<a-entity camera position="0 1.5 1" look-controls></a-entity>
+                <a-entity id="lefthand"
+                          oculus-touch-controls="hand: left; model:false"
+                          haptics="dur: 40"
+                          raycaster="objects: .collidable; showLine: true; far: 5;"
+                          line="color: yellow; opacity: 1;">
+                          <a-sphere color="yellow" radius="0.05"></a-sphere>
+                </a-entity>
+                <a-entity id="righthand"
+                          oculus-touch-controls="hand: right; model:false"
+                          haptics="dur: 40"
+                          raycaster="objects: .collidable; showLine: true; far: 5;"
+                          line="color: yellow; opacity: 1;"
+                          geometry="primitive: sphere; radius: 0.05">
+                </a-entity>
+        	</a-entity>
+
+            <a-box id="objet" position="-2 0.5 -3" color="blue"
+        		class="collidable" collision>
+        	</a-box>
+
+            <a-sky color="#6EBAA7"></a-sky>
+        </a-scene>
+    </body>
+</html>

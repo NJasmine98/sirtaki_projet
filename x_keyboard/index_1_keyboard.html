@@ -1,0 +1,41 @@
+<!-- Introduces an "extended WASD controls" component for desktop (keyboard) that enables the user to:
+- move forward/left/backward/right (W/A/S/D)
+- turn left/right (Q/E)
+- fly up/down (R/F)
+- look up/down (T/G)
+Controls and settings are completely customizable; can be applied to camera or other entities.  -->
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="./js/extended-wasd-controls.js"></script>
+    </head>
+
+    <body>
+
+        <!-- disable press "F" to enter fullscreen mode. -->
+        <a-scene keyboard-shortcuts="enterVR: false;" renderer="antialias: true">
+
+            <a-entity id="camera" camera
+        		position="0 1.7 0"
+        		extended-wasd-controls="flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60;">
+        	</a-entity>
+
+        	<a-plane width="10" height="10" color="#999999"
+        		position="0 0 0" rotation="-90 0 0">
+        	</a-plane>
+
+        	<a-box id="boite1" position="-2 0.5 -3" color="blue">
+            </a-box>
+
+        	<a-box id="boite2" position = "0 0.5 -3" color = "blue">
+        	</a-box>
+
+        	<a-box id="boite3" position = "2 0.5 -3" color = "blue">
+        	</a-box>
+
+        </a-scene>
+    </body>
+</html>

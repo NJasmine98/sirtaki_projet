@@ -1,0 +1,43 @@
+<!-- source : https://github.com/aframevr/aframe/blob/master/docs/components/raycaster.md -->
+<!-- doc(fr) : https://sodocumentation.net/fr/aframe/topic/10036/raycasters--composant- -->
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script>
+        AFRAME.registerComponent('collision', {
+        	init: function() {
+                let mesh = this.el.getObject3D("mesh");
+        		this.el.addEventListener("raycaster-intersected", function(event) {
+                    mesh.material.color.set("red");
+        		});
+
+        		this.el.addEventListener("raycaster-intersected-cleared", function(event) {
+                    mesh.material.color.set("blue");
+        		});
+        	}
+        });
+        </script>
+
+    </head>
+
+    <body>
+        <a-scene>
+            <a-entity position="0 0 0">
+        		<a-entity camera position="0 1.5 1" look-controls></a-entity>
+                <a-entity laser-controls="hand: right"
+                          raycaster="objects: .collidable"
+                          line="color: #00FF00"
+                ></a-entity>
+        	</a-entity>
+
+            <a-box id="objet" position="-2 0.5 -3" color="blue"
+        		class="collidable" collision>
+        	</a-box>
+
+            <a-sky color="#6EBAA7"></a-sky>
+        </a-scene>
+    </body>
+</html>

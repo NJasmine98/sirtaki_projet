@@ -1,0 +1,56 @@
+<html>
+
+    <head>
+          <meta charset="UTF-8">
+          <title>3_model init</title>
+          <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+          <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+
+          <script>
+              AFRAME.registerComponent('init', {
+                init: function () {
+                    var el = this.el;
+                    el.addEventListener('mouseenter', function () {
+                        renard = document.getElementById("renard");
+                        renard.removeAttribute("animation-mixer");
+                        renard.setAttribute("animation-mixer", "clip: Run;" );
+                        console.log(">>> action = Run");
+                    });
+                }
+              });
+          </script>
+
+
+    </head>
+
+    <a-scene>
+        <a-assets>
+          <a-asset-item id="fox" src="./fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity id="renard"
+                  position="-4 -2 -9"
+                  rotation="0 60 0"
+                  scale="0.03 0.03 0.03"
+                  gltf-model="#fox"
+                  animation-mixer="clip: Survey"
+                  >
+        </a-entity>
+
+
+        <a-text id="texte" value="start to run ?" align="center" color="#FFF" visible="true" position="1 0.75 -3"
+                geometry="primitive: plane; width: 2; height: 0.5" material="color: #333"
+                event-set__curseur="_event: mouseleave; _target: #curseur; visible: false"
+                event-set__texte="_event: mouseleave; _target: #texte; visible: false"
+                init>
+        </a-text>
+
+      <a-camera>
+        <a-cursor id="curseur"></a-cursor>
+      </a-camera>
+
+    </a-scene>
+  </body>
+
+</html>

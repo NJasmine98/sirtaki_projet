@@ -1,0 +1,27 @@
+<!-- https://github.com/supermedium/superframe/tree/master/components/event-set -->
+<!-- https://github.com/supermedium/superframe -->
+
+<html>
+
+    <head>
+          <meta charset="UTF-8">
+          <title>1_event-set_0_event default name</title>
+          <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+          <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    </head>
+
+    <body>
+      <a-scene>
+        <a-box color="green" position="0 1 -4"
+               event-set__click="material.color: red; scale: 2 2 2"
+               event-set__mouseenter="material.color: blue"
+               event-set__mouseleave="material.color: green;scale: 1 1 1">
+        </a-box>
+
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+      </a-scene>
+    </body>
+
+</html>

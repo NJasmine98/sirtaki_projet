@@ -1,0 +1,26 @@
+<!-- https://aframe.io/docs/1.0.0/primitives/a-sky.html -->
+<!-- https://github.com/jorgecardoso/aframe-webcentric-component -->
+<!-- source img : https://www.flickr.com/groups/360degrees/pool/map?mode=group -->
+<!-- source img : https://svd360.istreetview.com/ -->
+<!-- rubrique : equirectangular dans https://aframe.io/docs/1.0.0/primitives/a-sky.html -->
+<!-- https://fr.wikipedia.org/wiki/Projection_cylindrique_%C3%A9quidistante -->
+<!-- https://en.wikipedia.org/wiki/Equirectangular_projection -->
+<!-- http://ngokevin.com/blog/360-photography/ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-webcentric-component@0.0.2/dist/aframe-webcentric-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene webcentric>
+      <a-assets>
+        <img id="lieu" crossorigin="anonymous" src="ramee.jpg" />
+      </a-assets>
+
+      <a-sky src="#lieu"></a-sky>
+
+      <a-entity><a-camera wasd-controls-enabled="false"></a-camera></a-entity>
+    </a-scene>
+  </body>
+</html>

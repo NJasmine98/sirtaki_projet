@@ -1,0 +1,32 @@
+<!-- https://aframe.io/docs/1.1.0/components/text.html#stock-fonts -->
+<!-- https://github.com/etiennepinchon/aframe-fonts -->
+<!-- Fonts : 
+    We can specify different fonts, although the process is not as simple as Web Fonts. 
+    The text component defaults to roboto which uses a multi-channel signed distance (MSDF) font. 
+
+    MSDF helps to preserve sharp corners and edges. https://aframe.io/aframe/examples/test/text/msdf.html
+    converter : 
+    - https://github.com/Chlumsky/msdfgen
+    - https://msdf-bmfont.donmccurdy.com/
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>aframe-fonts</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+</head>
+
+<body>
+    <a-scene background="color: #5280A7">
+
+        <a-entity scale="5 5 5" position="0 1 -2" align="center"
+            text="value: Roboto-msdf; color:#FFFFFF; shader: msdf; font: https://cdn.aframe.io/fonts/Roboto-msdf.json;">
+        </a-entity>
+
+    </a-scene>
+
+</body>
+
+</html>

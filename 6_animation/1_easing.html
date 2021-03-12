@@ -1,0 +1,39 @@
+<!-- ref : https://aframe.io/docs/1.1.0/components/animation.html -->
+<!-- sources : https://aframe-course.glitch.me/1200-animations.html -->
+<!-- Easings = how the animation progresses through time (constant speed ?)
+main categories of easings are:
+- linear: constant speed (the bottom box in the example).
+- easeIn: the animation starts slow and gains speed as it progresses (top box).
+- easeOut: the animation starts fast but loses speed as it progresses (second box from the top).
+- easeInOut: the animation starts slow, gains speed, and then loses speed as it reaches the end (third box from the top)
+https://aframe.io/docs/1.0.0/components/animation.html#easings
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animations - 02 - Easings</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color:blue">
+        <a-box scale="0.5 0.5 0.5" position="-3 0 -4"
+            animation="property: position; dur: 5000; easing: linear; to: 3 0 -4; loop: true">
+        </a-box>
+
+        <a-box scale="0.5 0.5 0.5" position="-3 1 -4"
+            animation="property: position; dur: 5000; easing: easeInOutQuad; to: 3 1 -4; loop: true">
+        </a-box>
+
+        <a-box scale="0.5 0.5 0.5" position="-3 2 -4"
+            animation="property: position; dur: 5000; easing: easeOutQuad; to: 3 2 -4; loop: true">
+        </a-box>
+
+        <a-box scale="0.5 0.5 0.5" position="-3 3 -4"
+            animation="property: position; dur: 5000; easing: easeInQuad; to: 3 3 -4; loop: true">
+        </a-box>
+    </a-scene>
+</body>
+
+</html>

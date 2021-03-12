@@ -1,0 +1,32 @@
+<!-- https://github.com/jgbarah/aframe-playground/tree/master/moving-01 -->
+<!-- Fox : https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/Fox -->
+<!-- animations : dans le gltf "name":  Walk / Survey / Run-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+  </head>
+
+  <body>
+
+      <a-scene>
+        <a-assets>
+          <a-asset-item id="fox" src="./models/fox.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity position="-4 -2 -9"
+                  rotation="0 60 0"
+                  scale="0.03 0.03 0.03"
+                  gltf-model="#fox"
+                  animation-mixer="clip: Survey">
+        </a-entity>
+
+        <a-sky color="grey"></a-sky>
+        <a-light type="ambient" color="white"></a-light>
+        <a-light type="point" intensity="1" position="-2 2 2"></a-light>
+      </a-scene>
+
+  </body>
+</html>

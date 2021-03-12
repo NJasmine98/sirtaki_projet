@@ -1,0 +1,22 @@
+<!-- ref : https://aframe.io/docs/1.1.0/components/animation.html -->
+<!-- sources : https://aframe-course.glitch.me/1200-animations.html -->
+<!-- Animating multiple properties : suffix with a double underscore -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animations - 06 - Multiple</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color:lightblue">
+        <a-box side="double" position="-1 1.6 -2" scale="0.5 0.5 0.5" color="#ff0000"
+            animation__height="property: height; from: 1; to: 3; dur: 1000; loop: true"
+            animation__rotation="property: rotation; from: 0 0 0; to: 360 0 0; dur: 1000; loop: true"
+            animation__color="property: color; from: #ff0000; to: #0000ff; dur: 1000; loop: true; dir: alternate">
+        </a-box>
+    </a-scene>
+</body>
+
+</html>

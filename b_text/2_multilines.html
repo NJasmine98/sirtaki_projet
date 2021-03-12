@@ -1,0 +1,32 @@
+<!-- https://aframe-course.glitch.me/0300-text.html -->
+<!-- https://aframe.io/docs/1.1.0/primitives/a-text.html -->
+<!-- Multiple lines of text : 
+- Large lines of text (with many characters) will automatically wrap at about 40 characters. 
+- In addition you can use the \n characters inside the text to explicitly create a newline
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Text - 03 - Multiple lines</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color: #5280A7">
+
+        <a-text position="0 3 -4"
+            value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempus arcu semper risus mollis, tempus ultrices sapien mattis.">
+        </a-text>
+
+        <a-text position="0 1.5 -4"
+            value="Lorem ipsum dolor sit amet, consectetur adipiscing elit.\nNunc tempus arcu semper risus mollis, tempus ultrices sapien mattis.\nPhasellus vel ligula in turpis bibendum consectetur in id diam.">
+        </a-text>
+
+        <a-entity>
+            <a-camera></a-camera>
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>

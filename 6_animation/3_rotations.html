@@ -1,0 +1,27 @@
+<!-- ref : https://aframe.io/docs/1.1.0/components/animation.html -->
+<!-- sources : https://aframe-course.glitch.me/1200-animations.html -->
+<!-- Rotations : 2 types -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animations - 04 - Rotation axis</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color:lightblue">
+        <a-entity id="rotatingbox" position="0 2 -2"
+            animation="property: rotation; from: 0 0 0; to: 0 0 360; dur: 1000; loop: true; easing: linear">
+            <a-box position="0 0.25 0" width="0.1" height="0.5" depth="0.1" color="#ff0000">
+            </a-box>
+        </a-entity>
+
+        <a-entity id="rotatingsphere" position="0 0 0"
+            animation="property: rotation; from: 0 0 0; to: 0 360 0; dur: 5000; loop: true; easing: linear">
+            <a-sphere position="0 0 -5" radius="0.1" color="#00ff00"> </a-sphere>
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>

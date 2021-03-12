@@ -1,0 +1,26 @@
+<!-- https://github.com/supermedium/superframe/tree/master/components/event-set -->
+<!-- https://github.com/supermedium/superframe -->
+
+<html>
+
+    <head>
+          <meta charset="UTF-8">
+          <title>1_event-set_0</title>
+          <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+          <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+
+    </head>
+
+    <body>
+      <a-scene>
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#0000FF"
+               event-set__enter="_event: mouseenter; color: #FF0000"
+               event-set__leave="_event: mouseleave; color: #0000FF"></a-box>
+
+        <a-camera>
+          <a-cursor></a-cursor>
+        </a-camera>
+      </a-scene>
+    </body>
+
+</html>

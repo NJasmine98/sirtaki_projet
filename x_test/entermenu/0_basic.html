@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>A-Frame: Environment component</title>
+    <meta name="description" content="A-Frame Examples">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+    <style>
+        * { margin:0; padding: 0; box-sizing: border-box; 
+            color: #5280A7; font-family: Arial, Helvetica, sans-serif;
+        }
+        .mainUI {
+            border: 0px solid pink;
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            /* allow click-through in transparent areas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .regionUI {
+            border: 0px solid yellow;
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            pointer-events: none;
+        }
+
+        .formUI {
+            border: 0px solid lime;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            pointer-events: auto;
+            /* filter: drop-shadow(0px 0px 20px white); */
+        }
+        #scene { display: none;}
+    </style>
+
+    <script>
+        // runs when user clicks button
+        AFRAME.registerComponent('start', {
+
+            init: function () {
+                // block pointer events until buttonEnter is clicked
+                let uiDiv = document.getElementById("uiDiv");
+                uiDiv.style["pointer-events"] = "auto";
+
+                // set up background blocker
+                uiDiv.style["background-color"] = "rgba(0, 0, 0, 0.75)";
+
+                // indicate clickable with hand cursor (desktop)
+                let buttonEnter = document.getElementById("buttonEnter");
+                buttonEnter.style.cursor = "pointer";
+
+                // activate for desktop/touchscreen
+                buttonEnter.addEventListener('touchstart', init);
+                buttonEnter.addEventListener('mousedown', init);
+            }
+        });
+
+        // fade-in functionality
+        let fadeIn = function () {
+            // allow point events again
+            uiDiv.style["pointer-events"] = "none";
+
+            // sounds can only be triggered after a mouse interaction
+            let soundPlayer = document.querySelector("#ambientSound");
+            soundPlayer.components.sound.playSound();
+
+            // fade out uiDiv background
+            uiDiv.style["background-color"] = "rgba(0, 0, 0, 0.0)";
+            uiDiv.style["transition"] = "background-color 1000ms linear";
+        }
+
+        // make scene visible
+        let show = function () {
+            let scene = document.getElementById("scene");
+            scene.style.display = "block";
+        }
+
+        // make scene visible
+        let getdata = function () {
+            let donnees = document.getElementById("donnees");
+            let nom = document.getElementById("nom");
+            let prenom = document.getElementById("prenom");
+            console.log(nom.value + " " + prenom.value);
+            donnees.setAttribute('value', prenom.value + " " + nom.value);
+        }
+        // remove forme 
+        let removeform = function () {
+            // remove startButton
+            let buttonEnter = document.getElementById("buttonEnter");
+            buttonEnter.parentNode.remove(buttonEnter);
+        }
+
+        function init() {
+            fadeIn();
+            show();
+            getdata();
+            removeform();
+        }
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="mainUI" id="uiDiv" oncontextmenu="return false;">
+        <!-- centered -->
+        <div class="regionUI">
+
+            <div class="formUI">
+                <label for="prenom">prénom :</label><input type="text" id="prenom" required><br />
+                <label for="nom">nom :</label><input type="text" id="nom" required><br />
+                <button type="button" id="buttonEnter">validez</button>
+            </div>
+        </div>
+    </div>
+
+    <a-scene id="scene" background="color: #5280A7" start>
+
+        <a-assets>
+            <audio id="ambient" src="./ambient-wind.mp3" preload="auto"></audio>
+        </a-assets>
+        <a-entity id="ambientSound" sound="src: #ambient; loop: true;"></a-entity>
+
+        <a-text id="donnees" position="0 2 -2" value="hello" align="center">
+        </a-text>
+
+    </a-scene>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!-- https://aframe.io/docs/1.0.0/primitives/a-sound.html -->
+<!-- si le message suivant apparait dans la console
+	 "La lecture automatique n’est autorisée que lorsqu’elle a été approuvée par l’utilisateur,
+	 que le site est activé par l’utilisateur, ou que le média est muet."
+	 il faut modifier les autorisations dans la barre d'adresse du navigateur -->
+<!DOCTYPE html>
+<html lang="fr">
+ 	<head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+ 		<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+        <script>
+			AFRAME.registerComponent('son_loaded', {
+			  init: function () {
+				var el = this.el;
+				el.addEventListener('sound-loaded', () => {
+				  console.log(">>>> son "+el.id+" chargé");
+				  // var entity = document.querySelector('[sound]');
+				  // entity.components.sound.playSound();
+				  });
+				this.el.addEventListener('sound-error', () => { console.log("son erreur"); });
+				}
+			});
+	    </script>
+   </head>
+
+   <body style='margin : 0px; overflow: hidden;'>
+
+	  <a-scene background="color: skyblue">
+    	    <a-assets>
+    	      <audio id="son" src="./vol.mp3" preload="auto" autoplay="true" loop="false"></audio>
+    	    </a-assets>
+
+    	    <a-entity id="vol" sound="src: #son" son_loaded></a-entity>
+
+	  </a-scene>
+
+  </body>
+</html>

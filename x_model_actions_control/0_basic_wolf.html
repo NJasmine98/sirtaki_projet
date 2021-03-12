@@ -1,0 +1,49 @@
+<!-- https://aframe-course.glitch.me/0900-3d-models.html -->
+<!-- https://www.youtube.com/watch?v=R2VMJBKM3LI&list=PLFNzafHmJdWsoy-q7fglDDKLJaPeem_n0&index=3 -->
+
+<!-- Wolf : https://sketchfab.com/3d-models/wolf-with-animations-f3769a474a714ebbbaca0d97f9b0a5a0 -->
+<!-- animations : Static Pose / 01_Run / 02_walk / 03_creep / 04_Idle / 05_site -->
+<!-- assets : src="https://raw.githubusercontent.com/jorgecardoso/aframe-usj-models/master/wolf_with_animations/scene.gltf" -->
+<!-- See the animation clips at https://sketchfab.com/models/f3769a474a714ebbbaca0d97f9b0a5a0# -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="wolf" src ="./models/wolf/scene.gltf"></a-asset-item>
+      </a-assets>
+
+      <!-- 1_ une animation -->
+      <!-- <a-gltf-model
+        position="0 0 -3"
+        rotation="0 120 0"
+        scale="3 3 3"
+        src="#wolf"
+        animation-mixer="clip: 05_site"
+      ></a-gltf-model> -->
+
+      <a-entity  id ="loup"
+          cursor-listener
+          scale="3.5 3.5 3.5"
+          position="0 1 -2.5"
+          rotation="0 0 0"
+          animation-mixer="clip: 01_Run"
+          gltf-model="#wolf"
+      ></a-entity>
+
+      <!-- 2 _ plusieurs animations : https://www.youtube.com/watch?v=C7RavTkh1lM&feature=youtu.be -->
+
+
+     <!-- lights -->
+      <a-light id="ambientLight" type="ambient" color="#BBB"></a-light>
+      <a-light id="directionalLight"  type="directional" color="#FFF" intensity="0.6" position="-0.5 1 1" ></a-light>
+      <a-light id="directionalLight1" type="directional" color="#FFF" intensity="7"   position="-0.5 1 1" ></a-light>
+    </a-scene>
+  </body>
+</html>

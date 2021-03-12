@@ -1,0 +1,25 @@
+<!-- ref : https://aframe.io/docs/1.1.0/components/animation.html -->
+<!-- sources : https://aframe-course.glitch.me/1200-animations.html -->
+<!-- Interactives animations -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animations - 08 - Events/Pause</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene cursor="rayOrigin: mouse" ackground="color:lightblue">
+        <a-box position="-1 1.6 -3" color="#ff0000"
+            animation="property: height; dur: 2000; from: 1; to: 2; startEvents: click; pauseEvents: mouseleave">
+        </a-box>
+
+
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+    </a-scene>
+</body>
+
+</html>

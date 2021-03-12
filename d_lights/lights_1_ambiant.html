@@ -1,0 +1,48 @@
+<!-- https://aframe-course.glitch.me/0800-lights.html -->
+<!-- Ambient light
+- affects every object in a scene
+- has no specific location is space, it is present everywhere.
+- only an ambient light will exist in the scene
+
+When we add a light to our scene, A-Frame will not add the default ones :
+<a-light id="ambientLight" type="ambient" color="#BBB"> </a-light>
+
+Controlling lights is hard to do because it is hard to predict their effect.
+= use the Visual Inspector to manipulate the light parameters:
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lights - 01</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color: #5280A7">
+      <a-assets>
+        <img id="earth" crossorigin="anonymous" src="./earth.jpg"/>
+        <img id="moon" crossorigin="anonymous" src="./moon.jpg"/>
+      </a-assets>
+
+      <a-sky color="lightblue"></a-sky>
+
+      <a-sphere position="0 1.6 -5" radius="1.25" src="#earth"></a-sphere>
+
+      <a-sphere position="2 1.6 -5" radius="0.25" src="#moon"></a-sphere>
+
+      <a-box position="-2 1.6 -5" color="blue"></a-box>
+
+      <a-cylinder position="-4 0.8 -5" height="1.6" radius="0.5"></a-cylinder>
+      <a-tetrahedron position="-6 1.6 -5" color="#85144b"></a-tetrahedron>
+
+      <!-- ground -->
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" color="#d0d0d0"></a-plane>
+
+      <!-- ceiling -->
+      <a-plane position="0 5 0" rotation="90 0 0" width="40" height="40" color="white" ></a-plane>
+
+      <!-- lights : GREY COLOR -->
+      <a-light id="ambientLight" type="ambient" color="#BBB"> </a-light>
+    </a-scene>
+  </body>
+</html>

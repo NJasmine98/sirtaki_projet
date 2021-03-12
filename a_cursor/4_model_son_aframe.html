@@ -1,0 +1,77 @@
+<html>
+
+    <head>
+          <meta charset="UTF-8">
+          <title>4_model son</title>
+          <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+          <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+          <script src="./unlock_audio_ios.js"></script>
+          <script>
+
+              AFRAME.registerComponent('init', {
+                init: function () {
+                    var el = this.el;
+                    el.addEventListener('mouseenter', function () {
+                        var son_vent = document.querySelector('#bruit');
+                        var AudioContext = window.AudioContext || window.webkitAudioContext;
+                        var contexteAudio = new AudioContext;
+                        unlockAudioIOS(contexteAudio); // ok pour context = AudioContext;
+                        console.log(contexteAudio.state);
+                        if(contexteAudio.state == "suspended")
+                        {
+                              contexteAudio.resume();
+                              son_vent.play();
+                              console.log(">>>> SON ON : Playback resumed successfully");
+                        }
+                        else {
+                              contexteAudio.suspend();
+                              son_vent.pause();
+                              console.log(">>>> SON OFF : Playback paused successfully");
+                        }
+                    });
+                    el.addEventListener('mouseleave', function () {
+                        renard = document.getElementById("renard");
+                        renard.removeAttribute("animation-mixer");
+                        renard.setAttribute("animation-mixer", "clip: Run;" );
+                        console.log(">>> action = Run");
+                    });
+                }
+              });
+          </script>
+
+
+    </head>
+
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="fox" src="./fox.glb"></a-asset-item>
+            <audio id="bruit" src="./vent.mp3" preload="auto" loop="false"></audio>
+        </a-assets>
+
+        <a-entity id="renard"
+                  position="-4 -2 -9"
+                  rotation="0 60 0"
+                  scale="0.03 0.03 0.03"
+                  gltf-model="#fox"
+                  animation-mixer="clip: Survey"
+                  >
+        </a-entity>
+
+        <a-text id="texte" value="start to run ?" align="center" color="#FFF" visible="true" position="1 0.75 -3"
+                geometry="primitive: plane; width: 2; height: 0.5" material="color: #333"
+                event-set__curseur="_event: mouseleave; _target: #curseur; visible: false"
+                event-set__texte="_event: mouseleave; _target: #texte; visible: false"
+                init>
+        </a-text>
+
+      <a-camera>
+        <a-cursor id="curseur"></a-cursor>
+      </a-camera>
+
+    </a-scene>
+
+
+  </body>
+
+</html>

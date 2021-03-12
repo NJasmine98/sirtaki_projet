@@ -1,0 +1,109 @@
+<!-- https://aframe.io/docs/1.0.0/components/sound.html -->
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+		<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+		<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <script src="./unlock_audio_ios.js"></script>
+
+		<script>
+			// verifie le chaargement du model 3D
+	      	AFRAME.registerComponent('modele_loaded', {
+	          init: function () {
+	            var el = this.el;
+	            el.addEventListener('model-loaded', () => {
+	              console.log(">>>> modele "+el.id+" chargé");
+	              });
+	            this.el.addEventListener('model-error', () => {
+	                // Grab the mesh / scene.
+	                console.log("modele erreur");
+	              });
+	            }
+	      	});
+
+			// au charement la musique
+			AFRAME.registerComponent('son_loaded', {
+			  init: function () {
+				var el = this.el;
+				el.addEventListener('sound-loaded', () => {
+				  console.log(">>>> son "+el.id+" chargé");
+				  var entity = document.querySelector('[sound]');
+				  entity.components.sound.playSound();
+				  });
+				this.el.addEventListener('sound-error', () => {
+					// Grab the mesh / scene.
+					console.log("son erreur");
+				  });
+				}
+			});
+	    </script>
+  </head>
+
+  <body style='margin : 0px; overflow: hidden;'>
+
+		<a-scene background="color: skyblue">
+			<a-assets>
+				<a-asset-item id="glbModel" src="./Flamingo.glb"></a-asset-item>
+				<audio id="son" src="./vol.mp3" preload="auto" loop="false"></audio>
+                <audio id="bruit" src="./vent.mp3" preload="auto" loop="false"></audio>
+			</a-assets>
+
+			<a-entity   id="modele"
+						scale="1 1 1"
+						position="0 0 -5"
+						rotation="0 90 0"
+						modele_loaded
+                        animation-mixer
+						gltf-model="#glbModel">
+			</a-entity>
+			<!-- Méthode 1 : entité indépendante -->
+		    <a-entity id="vent"
+					  sound="src: #bruit"
+					  son_loaded>
+			</a-entity>
+    	</a-scene>
+
+        <!-- GESTION AUDIO -->
+	        <button id="bouton" style="position: absolute; left: 20px; bottom: 20px;">SON ON</button>
+
+	        <script>
+	            var b = document.querySelector('#bouton');
+	            var son_vol = document.querySelector('#son');
+				var son_vent = document.querySelector('#bruit');
+
+	            var AudioContext = window.AudioContext || window.webkitAudioContext;
+	            var contexteAudio = new AudioContext;
+
+	            unlockAudioIOS(contexteAudio); // ok pour context = AudioContext;
+
+	            function resumeAudio() {
+	                console.log(contexteAudio.state);
+
+	                if(contexteAudio.state == "suspended")
+	                {
+	                      contexteAudio.resume();
+	                      son_vol.play();
+						  son_vent.play();
+	                      b.innerHTML = "SON OFF";
+	                      console.log(">>>> SON OFF : Playback resumed successfully");
+						  son_vol.emit("playing");
+				}
+	                else {
+	                      contexteAudio.suspend();
+	                      son_vol.pause();
+						  son_vent.pause();
+	                      b.innerHTML = "SON ON";
+	                      console.log(">>>> SON ON : Playback paused successfully");
+	                }
+	                //document.removeEventListener("click", resumeAudio);
+	            }
+	            b.onclick = resumeAudio;
+
+	          </script>
+
+  </body>
+</html>

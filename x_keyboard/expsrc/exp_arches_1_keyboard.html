@@ -1,0 +1,42 @@
+<!-- source : https://stemkoski.github.io/A-Frame-Examples/extended-wasd-controls.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-environment-component@2.0.0/dist/aframe-environment-component.min.js"></script>
+	<!-- <script src="js/aframe-environment-component.min.js"></script> -->
+	<script src="../js/extended-wasd-controls.js"></script>
+</head>
+
+<body>
+
+<script>
+
+</script>
+<!-- disable press "F" to enter fullscreen mode. -->
+<a-scene environment="preset: arches; shadow: true;"
+	keyboard-shortcuts="enterVR: false;">
+
+	<a-assets>
+		<img id="crate" src="../assets/crate.jpg" />
+	</a-assets>
+
+	<!--
+		create a camera entity; not adding default wasd-controls.
+		if desired, look-controls component can be added to camera,
+			which automatically sets turnEnabled/lookEnabled to false
+	-->
+	<a-entity id="camera" camera
+		position="0 1.6 0"
+		extended-wasd-controls="flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60;">
+	</a-entity>
+
+	<a-box position="0 0.5 -5" material="src:#crate;" shadow>
+	</a-box>
+
+</a-scene>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- https://aframe.io/docs/1.1.0/components/text.html#stock-fonts -->
+<!-- Scaling Text to Fit Geometry
+To have the text component’s width property automatically scale to match the geometry component’s width, 
+do not specify a width for the text component 
+-->
+<html>
+
+<head>
+    <title>Text</title>
+    <meta name="description" content="Text - A-Frame">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color: #5280A7">
+ 
+    <a-entity geometry="primitive: plane; width: 4; height: auto" 
+              material="color: blue"
+              position="0 1.6 -3"
+              text="value: This text will be 4 units wide.">
+    </a-entity>
+</body>
+
+</html>

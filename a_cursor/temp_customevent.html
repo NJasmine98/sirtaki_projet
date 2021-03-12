@@ -1,0 +1,38 @@
+<!-- https://www.video-game-codeur.fr/javascript-evenements-personnalises-custom-event/ -->
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <input id="runEvent"  type="button" value="Lancer Evenement"><br>
+    <input id="eventDestination"  type="button" value="Destinataire evenement">
+  </body>
+<script>
+// creation événement
+var monEvenement = new CustomEvent(
+  "monEvenement",
+  {
+    detail: {
+    message: "Hello World!",
+    time: new Date()
+    },
+  bubbles: true,
+  cancelable: true
+  }
+);
+
+// abonnement du bouton "Destinaitaire événement" à l'événement
+var eventDestination = document.getElementById("eventDestination");
+eventDestination.addEventListener("monEvenement", function(event) {
+  console.log("Reception de l'evenement");
+  console.log(event.detail.message);
+});
+
+// lancement de l'événement sur clic du bouton "Lancer Evénement"
+var runEvent = document.getElementById("runEvent");
+runEvent.addEventListener("click", function() {
+  console.log("Lancement de l'evenement");
+  document.getElementById("eventDestination").dispatchEvent(monEvenement);
+});
+</script>
+</html>

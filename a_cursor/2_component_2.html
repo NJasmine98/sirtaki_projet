@@ -1,0 +1,50 @@
+<!-- https://aframe.io/docs/1.0.0/introduction/interactions-and-controllers.html -->
+
+<html>
+
+    <head>
+          <meta charset="UTF-8">
+          <title>2_cursor component listener</title>
+          <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+          <script>
+              AFRAME.registerComponent('change-color-on-hover', {
+                schema: {
+                  color: {default: 'red'}
+                },
+
+                init: function () {
+                  var data = this.data;
+                  var el = this.el;  // <a-box>
+                  var defaultColor = el.getAttribute('material').color;
+
+                  el.addEventListener('mouseenter', function () {
+                    el.setAttribute('color', data.color);
+                  });
+
+                  el.addEventListener('mouseleave', function () {
+                    el.setAttribute('color', defaultColor);
+                  });
+                }
+              });
+          </script>
+    </head>
+<body>
+    <a-scene>
+
+        <a-entity camera look-controls position="0 1.6 4">
+              <a-entity cursor="fuse: true; fuseTimeout: 500"
+                        position="0 0 -3"
+                        geometry="primitive: ring; radiusInner: 0.05; radiusOuter: 0.07"
+                        material="color: black; shader: flat">
+              </a-entity>
+        </a-entity>
+
+        <a-box color="#EF2D5E"
+               position="0 0.5 -4"
+               change-color-on-hover="color: blue">
+        </a-box>
+
+    </a-scene>
+</body>
+
+</html>

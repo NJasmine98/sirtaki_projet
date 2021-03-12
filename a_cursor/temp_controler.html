@@ -1,0 +1,102 @@
+<!-- https://aframe-course.glitch.me/1100-interactions.html/ -->
+<!-- <VR>controlers : HTC Vive controler; </VR>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactions - 01 - Cursor</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component/dist/aframe-event-set-component.min.js"></script
+  </head>
+  <body>
+    <a-scene cursor="rayOrigin: mouse"> <!-- en mode desktop, la souris permet le pointage -->
+
+      <!-- étape 1 : afficher le curseur associé à la camera-->
+      <!-- <a-box position="0 1.6 -2" color="blue"></a-box> -->
+
+      <!-- étape 2 : 2 événements sur l'objet lui-même -->
+      <!-- <a-box position="-2 1.6 -2" color="red"
+                    event-set__mouseenter="color: blue"
+                    event-set__mouseleave="color: red" ></a-box> -->
+
+      <!-- étape 3 : un événement sur un autre target -->
+            <!-- <a-box
+              id="redbox"
+              width="0.5"
+              height="0.5"
+              depth="0.5"
+              position="-1 1.6 -2"
+              color="red"
+              event-set__mouseenter="_target:#greenbox; height: 1"
+              event-set__mouseleave="_target:#greenbox; height: 0.5"
+            ></a-box>
+
+            <a-box
+              id="greenbox"
+              width="0.5"
+              height="0.5"
+              depth="0.5"
+              position="0 1.6 -2"
+              color="green"
+              event-set__mouseenter="_target:#bluebox; height: 1"
+              event-set__mouseleave="_target:#bluebox; height: 0.5"
+            ></a-box>
+
+            <a-box
+              id="bluebox"
+              width="0.5"
+              height="0.5"
+              depth="0.5"
+              position="1 1.6 -2"
+              color="blue"
+              event-set__mouseenter="_target:#redbox; height: 1"
+              event-set__mouseleave="_target:#redbox; height: 0.5"
+            ></a-box> -->
+
+      <!-- étape 4 : exemple : show/hide, changement texture, forme, rotation,  -->
+      <a-box
+        position="-1 1.6 -2"
+        width="0.5"
+        height="0.5"
+        depth="0.5"
+        color="green"
+        event-set__mouseenter="visible: false"
+        event-set__mouseleave="visible: true"
+      ></a-box>
+
+      <a-box
+        position="0 1.6 -2"
+        width="0.5"
+        height="0.5"
+        depth="0.5"
+        color="red"
+        event-set__mouseenter="opacity: 0.5"
+        event-set__mouseleave="opacity: 1"
+      ></a-box>
+
+      <a-box
+        position="1 1.6 -2"
+        width="0.5"
+        height="0.5"
+        depth="0.5"
+        color="blue"
+        event-set__click="_target:#topbox; visible: true"
+      ></a-box>
+
+      <a-box
+        id="topbox"
+        position="1 2.6 -2"
+        width="0.5"
+        height="0.5"
+        depth="0.5"
+        color="lightblue"
+        visible="false"
+      ></a-box>
+
+      <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>

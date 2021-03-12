@@ -1,0 +1,46 @@
+/* <div class="arrowed"><div class="arrow up"></div></div> */
+/* https://freefrontend.com/css-arrows/ */
+
+/* Arrow holder */
+.arrowed {
+    position: relative;
+    background-color: silver;
+    height: 41px; width: 41px;
+    margin: 0 2px 2px 0;
+    border: 1px solid rgba(0,0,0,0.25);
+}
+/* Just centering the examples */
+.arrowed div {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+}
+.arrow {
+    /* more triangle */
+
+    position: relative;
+    height: 0px; width: 0px;
+    border: 12px solid;
+    border-color:
+        white
+        white
+        transparent
+        transparent;
+    transform: rotate(45deg);
+}
+
+.arrow:before {
+    content: '';
+    position: absolute;
+    top: 0px; right: 0px;
+    display: block;
+    height: 12px; width: 16px;
+    background-color: white;
+    transform:
+        rotate(-45deg)
+        translate(2px, 1px);
+}
+.up { transform: rotate(-45deg);}
+.down {transform: rotate(135deg);}
+.right { transform: rotate(45deg);}
+.left {transform: rotate(-135deg);}
